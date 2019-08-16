@@ -1,0 +1,60 @@
+<html>
+<head>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['gantt']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Phase');
+      data.addColumn('string', 'Task Name');
+      data.addColumn('string', 'Team');
+      data.addColumn('date', 'Start Date');
+      data.addColumn('date', 'End Date');
+      data.addColumn('number', 'Duration');
+      data.addColumn('number', 'Percent Complete');
+      data.addColumn('string', 'Dependencies');
+
+      data.addRows([
+        ['Requirements', 'Requirements', 'Business',
+         new Date(2019, 1,1), new Date(2019, 3, 31), null, 100, null],
+        ['Design', 'Design', 'ADM',
+         new Date(2019, 4, 1), new Date(2019, 4, 30), null, 70, null],
+        ['Construction', 'Construction', 'ADM',
+         new Date(2019, 4, 8), new Date(2019, 6, 10), null, 20, null],
+        ['DIT Testing', 'DIT Testing', 'ADM',
+         new Date(2019, 6, 11), new Date(2019, 6, 30), null, 0, null],
+        ['SIT Testing', 'SIT Testing', 'QA',
+         new Date(2019, 7, 1), new Date(2019, 8, 9), null, 0, null],
+        ['UAT Testing', 'UAT Testing', 'QA',
+         new Date(2019, 8, 10), new Date(2019, 8, 31), null, 0, null],
+        ['PAT Testing', 'PAT Testing', 'PAT',
+         new Date(2019, 9, 1), new Date(2019, 9, 15), null, 0, null],
+        ['Code Freeze', 'Code Freeze 2019', 'ALL',
+         new Date(2019, 9, 15), new Date(2019, 9, 27), null, 0, null],
+        ['Implementation', 'Implementation', 'ADM/QA',
+         new Date(2019, 9, 28), new Date(2019, 9, 29), null, 0, null],
+		 ['Warranty', 'Warranty', 'ADM',
+         new Date(2019, 9, 29), new Date(2019, 12, 31), null, 0, null]
+      ]);
+
+      var options = {
+        height: 400,width: 600,
+        gantt: {
+          trackHeight: 30
+
+        }
+      };
+
+      var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+    }
+  </script>
+</head>
+<body>
+  <div id="chart_div"></div>
+</body>
+</html>
